@@ -1,2 +1,5 @@
 # Local Claude Code settings (machine-specific permissions)
 .claude/settings.local.json
+
+# Slide outputs (generated files, không cần track)
+outputs/*.html
