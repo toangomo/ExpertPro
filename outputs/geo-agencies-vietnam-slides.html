@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEO Agencies Việt Nam 2025–2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:       #004aef;
+      --blue-light: #2563ff;
+      --blue-dim:   rgba(0, 74, 239, 0.15);
+      --mint:       #00ffaa;
+      --mint-dim:   rgba(0, 255, 170, 0.12);
+      --amber:      #ffce00;
+      --amber-dim:  rgba(255, 206, 0, 0.12);
+      --cyan:       #0dd1ff;
+      --cyan-dim:   rgba(13, 209, 255, 0.12);
+      --bg-base:    #080c14;
+      --bg-surface: #0d1117;
+      --bg-card:    rgba(255, 255, 255, 0.04);
+      --text-primary:   #f0f4ff;
+      --text-secondary: rgba(240, 244, 255, 0.6);
+      --text-muted:     rgba(240, 244, 255, 0.35);
+      --border-subtle:  rgba(255, 255, 255, 0.08);
+      --border-default: rgba(255, 255, 255, 0.14);
+      --border-accent:  rgba(0, 74, 239, 0.4);
+      --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+      --slide-pad-x: 80px;
+      --slide-pad-y: 56px;
+      --gap:  32px;
+      --gap-sm: 16px;
+      --gap-lg: 48px;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-base);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow: hidden;
+      height: 100vh;
+    }
+    .deck { width: 100vw; height: 100vh; position: relative; }
+    .slide {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: var(--slide-pad-y) var(--slide-pad-x);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.4s ease;
+      overflow: hidden;
+    }
+    .slide.active { opacity: 1; pointer-events: all; }
+    .slide::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(ellipse at 15% 50%, rgba(0,74,239,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 15%, rgba(13,209,255,0.05) 0%, transparent 45%);
+      pointer-events: none;
+    }
+
+    /* Typography */
+    .display { font-family: var(--font-display); font-size: clamp(40px, 5.5vw, 76px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
+    .h1 { font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 48px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+    .h2 { font-family: var(--font-display); font-size: clamp(20px, 2.5vw, 34px); font-weight: 600; letter-spacing: -0.015em; line-height: 1.2; }
+    .h3 { font-size: clamp(15px, 1.6vw, 22px); font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; }
+    .body-lg { font-size: clamp(15px, 1.4vw, 19px); line-height: 1.65; }
+    .body { font-size: 15px; line-height: 1.6; }
+    .caption { font-size: 12px; color: var(--text-secondary); }
+    .label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+    .mono { font-family: var(--font-mono); }
+    .gradient-text {
+      background: linear-gradient(135deg, var(--blue-light) 0%, var(--cyan) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .amber-text { color: var(--amber); }
+    .mint-text  { color: var(--mint); }
+    .cyan-text  { color: var(--cyan); }
+    .muted-text { color: var(--text-secondary); }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      backdrop-filter: blur(12px);
+    }
+    .card-accent {
+      background: var(--blue-dim);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+    .card-mint {
+      background: var(--mint-dim);
+      border: 1px solid rgba(0,255,170,0.25);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+    .card-amber {
+      background: var(--amber-dim);
+      border: 1px solid rgba(255,206,0,0.25);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+    .card-elevated {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05);
+    }
+
+    /* Tag */
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px;
+      background: var(--blue-dim);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-sm);
+      font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--cyan);
+    }
+    .tag-mint {
+      background: var(--mint-dim);
+      border-color: rgba(0,255,170,0.3);
+      color: var(--mint);
+    }
+    .tag-amber {
+      background: var(--amber-dim);
+      border-color: rgba(255,206,0,0.3);
+      color: var(--amber);
+    }
+
+    /* Accent line */
+    .accent-line { height: 3px; width: 48px; background: var(--blue); border-radius: 2px; margin-bottom: 16px; }
+    .accent-line-mint { background: var(--mint); }
+    .accent-line-cyan { background: var(--cyan); }
+
+    /* Divider */
+    .divider { height: 1px; background: var(--border-subtle); margin: 12px 0; }
+
+    /* Grid */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap-sm); }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap-sm); }
+    .split  { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap-lg); align-items: start; }
+    .split-40-60 { display: grid; grid-template-columns: 2fr 3fr; gap: var(--gap-lg); align-items: start; }
+
+    /* Stats */
+    .stat-number {
+      font-family: var(--font-display); font-size: clamp(40px, 6vw, 80px);
+      font-weight: 700; letter-spacing: -0.04em; line-height: 1; color: var(--mint);
+    }
+    .stat-number.blue { color: var(--blue-light); }
+    .stat-number.cyan { color: var(--cyan); }
+    .stat-number.amber { color: var(--amber); }
+    .stat-label { font-size: 13px; color: var(--text-secondary); margin-top: 6px; }
+
+    /* Feature list */
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .feature-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; }
+    .feature-list li::before { content: '—'; color: var(--blue); font-weight: 600; flex-shrink: 0; margin-top: 1px; }
+    .feature-list.mint li::before { color: var(--mint); }
+    .feature-list.cyan li::before { color: var(--cyan); }
+    .feature-list.amber li::before { color: var(--amber); }
+
+    /* Step number */
+    .step-num {
+      flex-shrink: 0; width: 36px; height: 36px;
+      background: var(--blue-dim); border: 1px solid var(--border-accent);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--blue-light);
+    }
+
+    /* Agency badge */
+    .agency-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: 100px;
+      font-size: 13px; font-weight: 600;
+    }
+    .agency-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+    .agency-dot.mint { background: var(--mint); }
+    .agency-dot.cyan { background: var(--cyan); }
+    .agency-dot.amber { background: var(--amber); }
+
+    /* Table */
+    .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .data-table th {
+      text-align: left; padding: 10px 14px;
+      background: rgba(0,74,239,0.1); border-bottom: 1px solid rgba(0,74,239,0.3);
+      font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cyan);
+    }
+    .data-table td { padding: 10px 14px; border-bottom: 1px solid var(--border-subtle); color: var(--text-secondary); vertical-align: middle; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: rgba(255,255,255,0.02); color: var(--text-primary); }
+    .data-table .highlight td { background: rgba(0,255,170,0.04); }
+    .data-table .name-cell { color: var(--text-primary); font-weight: 600; }
+    .pill {
+      display: inline-block; padding: 2px 8px;
+      border-radius: 100px; font-size: 11px; font-weight: 600;
+    }
+    .pill-green { background: rgba(0,255,170,0.12); color: var(--mint); border: 1px solid rgba(0,255,170,0.2); }
+    .pill-blue  { background: rgba(0,74,239,0.12); color: var(--cyan); border: 1px solid rgba(0,74,239,0.25); }
+    .pill-amber { background: rgba(255,206,0,0.12); color: var(--amber); border: 1px solid rgba(255,206,0,0.2); }
+    .pill-gray  { background: rgba(255,255,255,0.06); color: var(--text-secondary); border: 1px solid var(--border-subtle); }
+
+    /* Progress bar inline */
+    .progress-bar-wrap { display: flex; align-items: center; gap: 10px; }
+    .progress-bar-track { flex: 1; height: 5px; background: var(--border-subtle); border-radius: 3px; }
+    .progress-bar-fill  { height: 100%; border-radius: 3px; background: var(--mint); }
+    .progress-bar-fill.blue  { background: var(--blue-light); }
+    .progress-bar-fill.cyan  { background: var(--cyan); }
+    .progress-bar-fill.amber { background: var(--amber); }
+
+    /* Navigation */
+    .nav-bar {
+      position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 18px;
+      background: rgba(13,17,23,0.9);
+      border: 1px solid var(--border-default);
+      border-radius: 100px; padding: 9px 18px;
+      backdrop-filter: blur(16px); z-index: 100;
+    }
+    .nav-btn {
+      width: 34px; height: 34px; background: transparent;
+      border: 1px solid var(--border-subtle); border-radius: 50%;
+      color: var(--text-primary); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: var(--transition);
+    }
+    .nav-btn:hover:not(:disabled) { background: var(--blue-dim); border-color: var(--border-accent); }
+    .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+    .slide-counter { font-size: 13px; font-weight: 500; color: var(--text-secondary); min-width: 52px; text-align: center; }
+    .slide-counter b { color: var(--text-primary); }
+    .sep { margin: 0 3px; }
+    .progress-track { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: var(--border-subtle); z-index: 100; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--blue), var(--cyan)); transition: width 0.4s ease; }
+    .slide-num { position: fixed; top: 20px; right: 28px; font-family: var(--font-mono); font-size: 11px; font-weight: 500; color: var(--text-muted); z-index: 100; }
+
+    /* ====== SLIDE-SPECIFIC ====== */
+
+    /* COVER */
+    .slide-cover {
+      background: #080c14;
+      justify-content: center;
+    }
+    .slide-cover::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(0,74,239,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 25%, rgba(13,209,255,0.10) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 80%, rgba(0,255,170,0.06) 0%, transparent 40%);
+      pointer-events: none;
+    }
+    .cover-content { position: relative; z-index: 2; max-width: 820px; }
+    .cover-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+    .cover-title { margin-bottom: 20px; }
+    .cover-tagline { font-size: clamp(15px, 1.5vw, 19px); color: var(--text-secondary); line-height: 1.6; max-width: 580px; margin-bottom: 32px; }
+    .cover-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .cover-meta-item { font-size: 13px; color: var(--text-muted); }
+    .cover-meta-item span { color: var(--text-secondary); font-weight: 500; }
+
+    /* CONTEXT / STAT SLIDES */
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .stat-card { padding: 24px 20px; text-align: center; }
+
+    /* AGENCY CARD SLIDE */
+    .agency-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+    .agency-name { font-family: var(--font-display); font-size: clamp(24px, 3vw, 40px); font-weight: 700; letter-spacing: -0.02em; }
+    .agency-tags { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .agency-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
+    .metric-item { padding: 14px; text-align: center; background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); }
+    .metric-value { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--cyan); letter-spacing: -0.02em; }
+    .metric-label { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+    /* COMPARISON TABLE SLIDE */
+    .table-wrap { background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-lg); overflow: hidden; }
+
+    /* FRAMEWORK SLIDE */
+    .framework-card {
+      padding: 22px 24px;
+      border-left: 3px solid var(--blue);
+    }
+    .framework-card.mint { border-left-color: var(--mint); }
+    .framework-card.cyan { border-left-color: var(--cyan); }
+    .framework-card.amber { border-left-color: var(--amber); }
+    .framework-if { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+    .framework-condition { font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; }
+    .framework-then { display: flex; align-items: center; gap: 8px; }
+    .framework-arrow { color: var(--blue); font-weight: 700; font-size: 16px; }
+    .framework-arrow.mint { color: var(--mint); }
+    .framework-arrow.cyan { color: var(--cyan); }
+    .framework-arrow.amber { color: var(--amber); }
+    .framework-agency { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+
+    /* BOTTOM LINE SLIDE */
+    .bottom-line-number {
+      font-family: var(--font-display); font-size: clamp(80px, 12vw, 160px);
+      font-weight: 700; letter-spacing: -0.05em; line-height: 1;
+      background: linear-gradient(135deg, var(--blue-light) 0%, var(--cyan) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; opacity: 0.15;
+      position: absolute; right: 80px; bottom: 60px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- SLIDE 1: COVER -->
+  <section class="slide slide-cover active" data-slide="1">
+    <div class="cover-content">
+      <div class="cover-eyebrow">
+        <span class="tag">Research Report</span>
+        <span class="tag tag-mint">2025 — 2026</span>
+      </div>
+      <div class="cover-title">
+        <div class="display">
+          GEO Agencies
+          <br><span class="gradient-text">Việt Nam</span>
+        </div>
+      </div>
+      <p class="cover-tagline">
+        Ai đang thực sự dẫn đầu thị trường Generative Engine Optimization tại Việt Nam?
+        Phân tích 7 agency, so sánh năng lực, pricing và case study thực tế.
+      </p>
+      <div class="cover-meta">
+        <div class="cover-meta-item">Thị trường <span>Early Adopter</span></div>
+        <div class="cover-meta-item" style="color: var(--border-default)">|</div>
+        <div class="cover-meta-item"><span>7</span> Agencies phân tích</div>
+        <div class="cover-meta-item" style="color: var(--border-default)">|</div>
+        <div class="cover-meta-item">GEO = tối ưu cho <span>ChatGPT · Gemini · Perplexity</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2: TẠI SAO GEO QUAN TRỌNG NGAY BÂY GIỜ -->
+  <section class="slide" data-slide="2">
+    <div style="max-width: 900px; width: 100%;">
+      <div class="accent-line accent-line-mint"></div>
+      <div class="h1" style="margin-bottom: 8px;">AI đang ăn mòn traffic truyền thống</div>
+      <p class="body muted-text" style="margin-bottom: 32px;">Bốn con số bắt buộc mọi doanh nghiệp phải nhìn vào</p>
+
+      <div class="stats-row">
+        <div class="card stat-card">
+          <div class="stat-number">86<span style="font-size:0.45em; font-weight:500; color:var(--text-secondary);">%</span></div>
+          <div class="stat-label">search queries có AI Overview<br><span style="font-size:11px; color:var(--text-muted);">Nguồn: Authoritas</span></div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-number cyan">64<span style="font-size:0.45em; font-weight:500; color:var(--text-secondary);">%</span></div>
+          <div class="stat-label">Google searches không có click<br><span style="font-size:11px; color:var(--text-muted);">Zero-click searches</span></div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-number amber">40<span style="font-size:0.45em; font-weight:500; color:var(--text-secondary);">%+</span></div>
+          <div class="stat-label">Gen Z & Gen Alpha dùng AI Search thay Google<br><span style="font-size:11px; color:var(--text-muted);">Khảo sát 2025</span></div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-number" style="font-size: clamp(28px,4vw,54px); color: var(--mint);">6.4B</div>
+          <div class="stat-label">lượt AI chatbot / tháng<br><span style="font-size:11px; color:var(--text-muted);">Tháng 5/2025 toàn cầu</span></div>
+        </div>
+      </div>
+
+      <div class="card-accent" style="margin-top: 20px; padding: 16px 20px; display: flex; align-items: center; gap: 16px;">
+        <span style="font-size: 22px;">⚡</span>
+        <div>
+          <div style="font-size: 14px; font-weight: 600; color: var(--text-primary);">GEO không phải xu hướng — đây là survival necessity</div>
+          <div style="font-size: 13px; color: var(--text-secondary);">Việt Nam thông qua Luật AI đầu tiên (12/2025, hiệu lực 3/2026) — khung pháp lý đã sẵn sàng</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: BỨC TRANH THỊ TRƯỜNG -->
+  <section class="slide" data-slide="3">
+    <div style="max-width: 960px; width: 100%;">
+      <div class="accent-line"></div>
+      <div class="h1" style="margin-bottom: 8px;">Thị trường GEO Việt Nam: <span class="gradient-text">Early Adopter Phase</span></div>
+      <p class="body muted-text" style="margin-bottom: 28px;">Chỉ 6–8 trong số 20+ agency SEO có dịch vụ GEO được đóng gói thực sự</p>
+
+      <div class="grid-2" style="margin-bottom: 20px;">
+        <div class="card">
+          <div class="h3 mint-text" style="margin-bottom: 12px;">Nhóm A — GEO Standalone</div>
+          <p class="caption" style="margin-bottom: 12px;">Có package GEO riêng biệt, methodology độc lập</p>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div class="agency-badge"><span class="agency-dot"></span> TopOnSeek</div>
+            <div class="agency-badge"><span class="agency-dot mint"></span> SEONGON</div>
+            <div class="agency-badge"><span class="agency-dot cyan"></span> Midas Agency</div>
+            <div class="agency-badge"><span class="agency-dot amber"></span> Nextop Agency</div>
+            <div class="agency-badge"><span class="agency-dot" style="background: #a78bfa"></span> VietSEO</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="h3 cyan-text" style="margin-bottom: 12px;">Nhóm B — GEO Integrated</div>
+          <p class="caption" style="margin-bottom: 12px;">Tích hợp GEO vào SEO tổng thể, không tách riêng</p>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div class="agency-badge"><span class="agency-dot cyan"></span> GTV SEO</div>
+            <div class="agency-badge"><span class="agency-dot" style="background: #f472b6"></span> VIO Agency</div>
+          </div>
+          <div class="divider" style="margin-top: 16px;"></div>
+          <p style="font-size: 12px; color: var(--text-muted); margin-top: 10px;">
+            Phần lớn 20+ agency còn lại: đổi tên SEO thành GEO,<br>không có methodology thực chất
+          </p>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 12px;">
+        <div class="card" style="flex:1; padding: 14px 18px; display: flex; align-items: center; gap: 12px;">
+          <span style="font-size: 20px;">🏆</span>
+          <div style="font-size: 13px; color: var(--text-secondary);">Giải thưởng quốc tế: <span style="color: var(--text-primary); font-weight: 600;">SEONGON</span> (Global Agency Awards 2026) &amp; <span style="color: var(--text-primary); font-weight: 600;">TopOnSeek</span> (Global Search Awards 2025)</div>
+        </div>
+        <div class="card" style="flex:1; padding: 14px 18px; display: flex; align-items: center; gap: 12px;">
+          <span style="font-size: 20px;">⚠️</span>
+          <div style="font-size: 13px; color: var(--text-secondary);">Case study đều do agency <span style="color: var(--amber); font-weight: 600;">tự công bố</span> — chưa có audit độc lập</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4: TOPONSEEK -->
+  <section class="slide" data-slide="4">
+    <div style="max-width: 960px; width: 100%;">
+      <div class="agency-header">
+        <div>
+          <div style="margin-bottom: 8px;"><span class="tag">Agency 01 / 05</span></div>
+          <div class="agency-name gradient-text">TopOnSeek</div>
+          <div style="font-size: 14px; color: var(--text-secondary); margin-top: 4px;">Định vị mạnh nhất về GEO thuần túy tại Việt Nam</div>
+        </div>
+        <div class="agency-tags">
+          <span class="tag">GEO Standalone</span>
+          <span class="tag tag-amber">Global Search Awards 2025 Finalist</span>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <div class="card" style="margin-bottom: 14px;">
+            <div class="label" style="margin-bottom: 10px;">5 cấu phần dịch vụ GEO</div>
+            <ol style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
+              <li style="display:flex; gap:10px; align-items:flex-start; font-size:13px;">
+                <span class="step-num">01</span>
+                <div><strong style="color:var(--cyan);">AI Visibility Audit</strong> — Quét brand trên ChatGPT, Gemini, Perplexity, Apple Intelligence</div>
+              </li>
+              <li style="display:flex; gap:10px; align-items:flex-start; font-size:13px;">
+                <span class="step-num">02</span>
+                <div><strong style="color:var(--cyan);">Entity &amp; Schema Engineering</strong> — Xây knowledge graph, structured data</div>
+              </li>
+              <li style="display:flex; gap:10px; align-items:flex-start; font-size:13px;">
+                <span class="step-num">03</span>
+                <div><strong style="color:var(--cyan);">Content Chunking</strong> — Tái cấu trúc nội dung cho AI comprehension</div>
+              </li>
+              <li style="display:flex; gap:10px; align-items:flex-start; font-size:13px;">
+                <span class="step-num">04</span>
+                <div><strong style="color:var(--cyan);">Citation &amp; Digital Authority</strong> — Xây dựng nguồn trusted được AI ưu tiên</div>
+              </li>
+              <li style="display:flex; gap:10px; align-items:flex-start; font-size:13px;">
+                <span class="step-num">05</span>
+                <div><strong style="color:var(--cyan);">Performance Measurement</strong> — Track brand mentions &amp; citation frequency</div>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="card-accent">
+            <div class="label" style="margin-bottom: 8px;">Case study nổi bật</div>
+            <div style="font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px;">HDBank — Global Search Awards 2025</div>
+            <div style="font-size: 13px; color: var(--text-secondary);">Top Finalist tại giải thưởng tìm kiếm uy tín nhất thế giới — validation quốc tế cho GEO campaign</div>
+          </div>
+          <div class="card">
+            <div class="label" style="margin-bottom: 8px;">Điểm mạnh</div>
+            <ul class="feature-list cyan">
+              <li>Duy nhất dùng "specialized tools" để quét LLMs</li>
+              <li>Focus B2B tech, YMYL (tài chính, y tế, BĐS cao cấp)</li>
+              <li>Phân biệt rõ GEO với SEO truyền thống</li>
+            </ul>
+          </div>
+          <div class="card-amber" style="padding: 14px 18px;">
+            <div style="font-size: 13px;"><span style="color: var(--amber); font-weight: 600;">Pricing:</span> <span style="color: var(--text-secondary);">Không công khai — tư vấn trực tiếp</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: SEONGON -->
+  <section class="slide" data-slide="5">
+    <div style="max-width: 960px; width: 100%;">
+      <div class="agency-header">
+        <div>
+          <div style="margin-bottom: 8px;"><span class="tag">Agency 02 / 05</span></div>
+          <div class="agency-name" style="color: var(--mint);">SEONGON</div>
+          <div style="font-size: 14px; color: var(--text-secondary); margin-top: 4px;">Credibility cao nhất — agency duy nhất có validation quốc tế độc lập</div>
+        </div>
+        <div class="agency-tags">
+          <span class="tag tag-mint">Thành lập 2012</span>
+          <span class="tag tag-mint">5,000+ Dự án</span>
+          <span class="tag tag-amber">Global Agency Awards 2026 Shortlist</span>
+        </div>
+      </div>
+
+      <div class="split">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="agency-metrics" style="grid-template-columns: 1fr 1fr 1fr;">
+            <div class="metric-item">
+              <div class="metric-value" style="color: var(--mint);">2012</div>
+              <div class="metric-label">Năm thành lập</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value" style="color: var(--mint);">5K+</div>
+              <div class="metric-label">Dự án SEO</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value" style="color: var(--mint);">6</div>
+              <div class="metric-label">Thị trường quốc tế</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="label" style="margin-bottom: 8px;">Clients tiêu biểu</div>
+            <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.8;">
+              LPBank · Vietnam Airlines · Korean Tourism Board · Vimec · Richy
+            </div>
+          </div>
+          <div class="card">
+            <div class="label" style="margin-bottom: 8px;">Dấu hiệu GEO thực chất</div>
+            <ul class="feature-list mint">
+              <li>Đang tuyển "Chuyên viên phát triển GEO" riêng biệt</li>
+              <li>Đầu tư xây SEO AI Max framework</li>
+              <li>Shortlist Global Agency Awards 2026 cho GEO campaign</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="card-mint" style="margin-bottom: 14px;">
+            <div class="label" style="margin-bottom: 10px; color: rgba(0,255,170,0.6);">Case study — Global Agency Awards 2026</div>
+            <div style="font-size: 16px; font-weight: 600; color: var(--mint); margin-bottom: 8px;">Vietnam Airlines</div>
+            <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">
+              "Turning AI Challenges into SEO Advantage to Dominate Domestic Search and Expand Globally"
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <div style="font-size: 13px; display: flex; gap: 8px;">
+                <span style="color: var(--mint);">→</span>
+                <span>Dẫn đầu tìm kiếm nội địa với AI Overview</span>
+              </div>
+              <div style="font-size: 13px; display: flex; gap: 8px;">
+                <span style="color: var(--mint);">→</span>
+                <span>Mở rộng 6 thị trường: AU · SG · IN · UK · US · JP</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="label" style="margin-bottom: 8px;">Approach GEO</div>
+            <ul class="feature-list mint">
+              <li>Leverage AI Overviews như competitive advantage</li>
+              <li>SEO AI Max — framework kết hợp truyền thống + AI</li>
+              <li>Chiến lược linh hoạt theo sự phát triển của AI Search</li>
+            </ul>
+          </div>
+          <div class="card-amber" style="padding: 14px 18px; margin-top: 14px;">
+            <div style="font-size: 13px;"><span style="color: var(--amber); font-weight: 600;">Pricing:</span> <span style="color: var(--text-secondary);">Không công khai — liên hệ trực tiếp</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 6: GTV SEO -->
+  <section class="slide" data-slide="6">
+    <div style="max-width: 960px; width: 100%;">
+      <div class="agency-header">
+        <div>
+          <div style="margin-bottom: 8px;"><span class="tag">Agency 03 / 05</span></div>
+          <div class="agency-name" style="color: var(--cyan);">GTV SEO</div>
+          <div style="font-size: 14px; color: var(--text-secondary); margin-top: 4px;">Methodology rõ ràng nhất — pricing minh bạch nhất thị trường</div>
+        </div>
+        <div class="agency-tags">
+          <span class="tag">GEO Integrated</span>
+          <span class="tag" style="color: var(--cyan); border-color: rgba(13,209,255,0.4);">Thành lập 2016</span>
+          <span class="tag" style="color: var(--mint); border-color: rgba(0,255,170,0.4); background: var(--mint-dim);">96% KPI Rate</span>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <div class="card" style="margin-bottom: 14px;">
+            <div class="label" style="margin-bottom: 12px;">5-Pillar Framework</div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div style="display:flex; gap:10px; align-items:center;">
+                <div style="width:32px; height:32px; background: rgba(13,209,255,0.12); border: 1px solid rgba(13,209,255,0.3); border-radius: 6px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:var(--cyan); flex-shrink:0;">P1</div>
+                <div style="font-size:13px;"><strong style="color:var(--text-primary);">AI SEO Strategy</strong> <span style="color:var(--text-muted);">— Market analysis, AI-driven insights</span></div>
+              </div>
+              <div style="display:flex; gap:10px; align-items:center;">
+                <div style="width:32px; height:32px; background: rgba(13,209,255,0.12); border: 1px solid rgba(13,209,255,0.3); border-radius: 6px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:var(--cyan); flex-shrink:0;">P2</div>
+                <div style="font-size:13px;"><strong style="color:var(--text-primary);">Semantic Foundation</strong> <span style="color:var(--text-muted);">— Entity building, multi-platform brand</span></div>
+              </div>
+              <div style="display:flex; gap:10px; align-items:center;">
+                <div style="width:32px; height:32px; background: rgba(13,209,255,0.12); border: 1px solid rgba(13,209,255,0.3); border-radius: 6px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:var(--cyan); flex-shrink:0;">P3</div>
+                <div style="font-size:13px;"><strong style="color:var(--text-primary);">Content Engine</strong> <span style="color:var(--text-muted);">— Topical mapping, compound growth</span></div>
+              </div>
+              <div style="display:flex; gap:10px; align-items:center;">
+                <div style="width:32px; height:32px; background: rgba(13,209,255,0.12); border: 1px solid rgba(13,209,255,0.3); border-radius: 6px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:var(--cyan); flex-shrink:0;">P4</div>
+                <div style="font-size:13px;"><strong style="color:var(--text-primary);">Authority Building</strong> <span style="color:var(--text-muted);">— Link building, PR campaigns</span></div>
+              </div>
+              <div style="display:flex; gap:10px; align-items:center;">
+                <div style="width:32px; height:32px; background: rgba(13,209,255,0.12); border: 1px solid rgba(13,209,255,0.3); border-radius: 6px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:var(--cyan); flex-shrink:0;">P5</div>
+                <div style="font-size:13px;"><strong style="color:var(--text-primary);">UX &amp; Conversion</strong> <span style="color:var(--text-muted);">— Traffic → qualified leads</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="card">
+            <div class="label" style="margin-bottom: 12px;">Bảng giá công khai</div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(13,209,255,0.06); border-radius: 8px;">
+                <div>
+                  <div style="font-size: 13px; font-weight: 600; color: var(--text-primary);">Starter</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">150–250 keywords</div>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-size: 14px; font-weight: 700; color: var(--cyan);">350M VND</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">~14K USD / 8–10 tháng</div>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(13,209,255,0.08); border-radius: 8px; border: 1px solid rgba(13,209,255,0.2);">
+                <div>
+                  <div style="font-size: 13px; font-weight: 600; color: var(--text-primary);">Growth</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">200–500 keywords</div>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-size: 14px; font-weight: 700; color: var(--cyan);">500M VND</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">~20K USD / 8–10 tháng</div>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(13,209,255,0.10); border-radius: 8px;">
+                <div>
+                  <div style="font-size: 13px; font-weight: 600; color: var(--text-primary);">Dominate</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">400+ keywords</div>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-size: 14px; font-weight: 700; color: var(--cyan);">800M VND</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">~32K USD / 8–10 tháng</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-accent" style="padding: 14px 18px;">
+            <div style="font-size: 13px; color: var(--text-secondary);">
+              <span style="color: var(--text-primary); font-weight: 600;">500+ projects</span> ·
+              <span style="color: var(--mint); font-weight: 600;">96% KPI achievement</span> ·
+              Claim 10–20x traffic sau 12 tháng
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 7: MIDAS AGENCY -->
+  <section class="slide" data-slide="7">
+    <div style="max-width: 960px; width: 100%;">
+      <div class="agency-header">
+        <div>
+          <div style="margin-bottom: 8px;"><span class="tag">Agency 04 / 05</span></div>
+          <div class="agency-name" style="color: var(--amber);">Midas Agency</div>
+          <div style="font-size: 14px; color: var(--text-secondary); margin-top: 4px;">Case study số liệu rõ ràng nhất — phân tích zero-click challenge bài bản nhất</div>
+        </div>
+        <div class="agency-tags">
+          <span class="tag">GEO Standalone</span>
+          <span class="tag tag-amber">247% Avg Traffic Growth</span>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="card">
+            <div class="label" style="margin-bottom: 12px;">5-Step Implementation</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div style="display:flex; gap:10px; align-items:flex-start; font-size:13px;">
+                <span class="step-num" style="background: var(--amber-dim); border-color: rgba(255,206,0,0.3); color:var(--amber);">01</span>
+                <div><strong>Audit &amp; AI Gap Analysis</strong> <span class="muted-text">(1–2 tuần)</span></div>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start; font-size:13px;">
+                <span class="step-num" style="background: var(--amber-dim); border-color: rgba(255,206,0,0.3); color:var(--amber);">02</span>
+                <div><strong>Custom Strategy</strong> <span class="muted-text">(1 tuần)</span></div>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start; font-size:13px;">
+                <span class="step-num" style="background: var(--amber-dim); border-color: rgba(255,206,0,0.3); color:var(--amber);">03</span>
+                <div><strong>Technical &amp; Content Deploy</strong> <span class="muted-text">(2–4 tuần)</span></div>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start; font-size:13px;">
+                <span class="step-num" style="background: var(--amber-dim); border-color: rgba(255,206,0,0.3); color:var(--amber);">04</span>
+                <div><strong>Brand Signal Building</strong> <span class="muted-text">(ongoing)</span></div>
+              </div>
+              <div style="display:flex; gap:10px; align-items:flex-start; font-size:13px;">
+                <span class="step-num" style="background: var(--amber-dim); border-color: rgba(255,206,0,0.3); color:var(--amber);">05</span>
+                <div><strong>Monitoring &amp; Optimization</strong> <span class="muted-text">(monthly)</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="label" style="margin-bottom: 8px;">4 Trụ cột kỹ thuật</div>
+            <ul class="feature-list amber">
+              <li>Entity Map &amp; Schema Markup</li>
+              <li>E-E-A-T Content (Experience, Expertise, Authority, Trustworthiness)</li>
+              <li>Technical SEO infrastructure</li>
+              <li>Brand Signals (citations &amp; mentions)</li>
+            </ul>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="card-amber">
+            <div class="label" style="margin-bottom: 12px; color: rgba(255,206,0,0.6);">Kết quả tự công bố</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+              <div style="text-align: center;">
+                <div style="font-size: 32px; font-weight: 700; color: var(--amber); letter-spacing: -0.03em;">247%</div>
+                <div style="font-size: 11px; color: var(--text-muted);">avg traffic growth</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 32px; font-weight: 700; color: var(--amber); letter-spacing: -0.03em;">87%</div>
+                <div style="font-size: 11px; color: var(--text-muted);">AI Overview appearance</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 32px; font-weight: 700; color: var(--amber); letter-spacing: -0.03em;">68%</div>
+                <div style="font-size: 11px; color: var(--text-muted);">AI visibility cho industry KWs</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 32px; font-weight: 700; color: var(--amber); letter-spacing: -0.03em;">+150%</div>
+                <div style="font-size: 11px; color: var(--text-muted);">brand searches</div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="label" style="margin-bottom: 10px;">Bảng giá</div>
+            <div style="font-size: 13px; color: var(--text-secondary);">Dải giá rộng nhất thị trường:</div>
+            <div style="font-size: 18px; font-weight: 700; color: var(--amber); margin: 6px 0;">20 — 125 triệu VND/tháng</div>
+            <div style="font-size: 12px; color: var(--text-muted);">~$800 – $5,000/tháng · Contract 6–12 tháng</div>
+          </div>
+          <div class="card" style="padding: 12px 16px; display: flex; gap: 10px; align-items: center;">
+            <span style="font-size: 18px;">✅</span>
+            <div style="font-size: 13px; color: var(--text-secondary);">Kết quả 3–6 tháng · Target: 60% top-10 → 80% top-5 keywords</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 8: VIO AGENCY -->
+  <section class="slide" data-slide="8">
+    <div style="max-width: 960px; width: 100%;">
+      <div class="agency-header">
+        <div>
+          <div style="margin-bottom: 8px;"><span class="tag">Agency 05 / 05</span></div>
+          <div class="agency-name" style="color: #a78bfa;">VIO Agency</div>
+          <div style="font-size: 14px; color: var(--text-secondary); margin-top: 4px;">AI citation numbers ấn tượng nhất được công bố công khai tại Việt Nam</div>
+        </div>
+        <div class="agency-tags">
+          <span class="tag">GEO Integrated</span>
+          <span class="tag" style="color: #a78bfa; background: rgba(167,139,250,0.1); border-color: rgba(167,139,250,0.3);">1,300+ Pages Cited</span>
+        </div>
+      </div>
+
+      <div class="split-40-60">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="card">
+            <div class="label" style="margin-bottom: 10px;">Methodology</div>
+            <ul class="feature-list" style="--list-color: #a78bfa;">
+              <li style="font-size: 13px;"><span style="color: #a78bfa; margin-right: 6px;">—</span> AI-Optimized Content: cấu trúc rõ ràng cho LLM comprehension</li>
+              <li style="font-size: 13px;"><span style="color: #a78bfa; margin-right: 6px;">—</span> Trustworthy Content System: E-E-A-T + topic clusters</li>
+              <li style="font-size: 13px;"><span style="color: #a78bfa; margin-right: 6px;">—</span> Multi-Platform Brand Signals: web + social + GBP + backlinks</li>
+            </ul>
+          </div>
+          <div class="card" style="padding: 14px 18px;">
+            <div class="label" style="margin-bottom: 6px;">Formula</div>
+            <div style="font-size: 14px; font-weight: 600; color: var(--text-primary);">SEO + GEO + Entity Optimization</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Tập trung xây "Trusted Source" cho LLMs</div>
+          </div>
+        </div>
+        <div>
+          <div class="card" style="border: 1px solid rgba(167,139,250,0.2); background: rgba(167,139,250,0.06);">
+            <div class="label" style="margin-bottom: 16px; color: rgba(167,139,250,0.7);">Case studies — 4 ngành khác nhau</div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(167,139,250,0.08); border-radius: 8px;">
+                <div>
+                  <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em;">Du lịch</div>
+                  <div style="font-size: 13px; font-weight: 600; color: var(--text-primary);">1,300+ pages được cite bởi AI</div>
+                </div>
+                <span style="font-size: 22px; font-weight: 800; color: #a78bfa; letter-spacing: -0.03em;">1.3K+</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(167,139,250,0.08); border-radius: 8px;">
+                <div>
+                  <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em;">F&amp;B</div>
+                  <div style="font-size: 13px; font-weight: 600; color: var(--text-primary);">Organic traffic tăng 384%</div>
+                </div>
+                <span style="font-size: 22px; font-weight: 800; color: #a78bfa; letter-spacing: -0.03em;">+384%</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(167,139,250,0.08); border-radius: 8px;">
+                <div>
+                  <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em;">Spa / Beauty</div>
+                  <div style="font-size: 13px; font-weight: 600; color: var(--text-primary);">8 direct AI Overview appearances</div>
+                </div>
+                <span style="font-size: 22px; font-weight: 800; color: #a78bfa; letter-spacing: -0.03em;">8x</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(167,139,250,0.08); border-radius: 8px;">
+                <div>
+                  <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em;">VIO's own site</div>
+                  <div style="font-size: 13px; font-weight: 600; color: var(--text-primary);">13 pages cited trên ChatGPT + AI Mode</div>
+                </div>
+                <span style="font-size: 22px; font-weight: 800; color: #a78bfa; letter-spacing: -0.03em;">13</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-amber" style="padding: 12px 16px; margin-top: 12px;">
+            <div style="font-size: 13px;"><span style="color: var(--amber); font-weight: 600;">Pricing:</span> <span style="color: var(--text-secondary);">Không công khai — liên hệ trực tiếp</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 9: SO SÁNH TỔNG HỢP -->
+  <section class="slide" data-slide="9">
+    <div style="max-width: 980px; width: 100%;">
+      <div class="accent-line"></div>
+      <div class="h1" style="margin-bottom: 8px;">So sánh tổng hợp 7 agency</div>
+      <p class="body muted-text" style="margin-bottom: 20px;">Dựa trên thông tin công khai — không có audit độc lập</p>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Agency</th>
+              <th>Năm TL</th>
+              <th>Dự án</th>
+              <th>GEO Package</th>
+              <th>Pricing / tháng</th>
+              <th>Giải thưởng QT</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight">
+              <td class="name-cell">SEONGON</td>
+              <td>2012</td>
+              <td><span class="pill pill-green">5,000+</span></td>
+              <td><span class="pill pill-blue">Standalone</span></td>
+              <td style="color:var(--text-muted);">N/A</td>
+              <td><span class="pill pill-green">Global Agency Awards 2026</span></td>
+            </tr>
+            <tr>
+              <td class="name-cell">TopOnSeek</td>
+              <td style="color:var(--text-muted);">—</td>
+              <td style="color:var(--text-muted);">—</td>
+              <td><span class="pill pill-blue">Standalone</span></td>
+              <td style="color:var(--text-muted);">N/A</td>
+              <td><span class="pill pill-blue">Global Search Awards 2025</span></td>
+            </tr>
+            <tr>
+              <td class="name-cell">GTV SEO</td>
+              <td>2016</td>
+              <td><span class="pill pill-blue">500+</span></td>
+              <td><span class="pill pill-gray">Integrated</span></td>
+              <td style="color:var(--cyan); font-weight:600;">35–80M VND</td>
+              <td style="color:var(--text-muted);">—</td>
+            </tr>
+            <tr>
+              <td class="name-cell">Midas Agency</td>
+              <td style="color:var(--text-muted);">—</td>
+              <td style="color:var(--text-muted);">—</td>
+              <td><span class="pill pill-blue">Standalone</span></td>
+              <td style="color:var(--amber); font-weight:600;">20–125M VND</td>
+              <td style="color:var(--text-muted);">—</td>
+            </tr>
+            <tr>
+              <td class="name-cell">VIO Agency</td>
+              <td style="color:var(--text-muted);">—</td>
+              <td style="color:var(--text-muted);">—</td>
+              <td><span class="pill pill-gray">Integrated</span></td>
+              <td style="color:var(--text-muted);">N/A</td>
+              <td style="color:var(--text-muted);">—</td>
+            </tr>
+            <tr>
+              <td class="name-cell">Nextop Agency</td>
+              <td style="color:var(--text-muted);">—</td>
+              <td style="color:var(--text-muted);">—</td>
+              <td><span class="pill pill-blue">Standalone</span></td>
+              <td style="color:var(--text-muted);">N/A</td>
+              <td style="color:var(--text-muted);">—</td>
+            </tr>
+            <tr>
+              <td class="name-cell">VietSEO</td>
+              <td style="color:var(--text-muted);">—</td>
+              <td style="color:var(--text-muted);">—</td>
+              <td><span class="pill pill-blue">Standalone</span></td>
+              <td style="color:var(--text-muted);">N/A</td>
+              <td style="color:var(--text-muted);">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 16px; display: flex; gap: 12px;">
+        <div class="card" style="flex: 1; padding: 12px 16px;">
+          <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">Track record lâu nhất</div>
+          <div style="font-size: 14px; font-weight: 600; color: var(--mint);">SEONGON — 13 năm, 5K+ dự án</div>
+        </div>
+        <div class="card" style="flex: 1; padding: 12px 16px;">
+          <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">Pricing minh bạch nhất</div>
+          <div style="font-size: 14px; font-weight: 600; color: var(--cyan);">GTV SEO &amp; Midas Agency</div>
+        </div>
+        <div class="card" style="flex: 1; padding: 12px 16px;">
+          <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">Citation numbers cao nhất</div>
+          <div style="font-size: 14px; font-weight: 600; color: #a78bfa;">VIO Agency — 1,300+ pages</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 10: FRAMEWORK CHỌN AGENCY -->
+  <section class="slide" data-slide="10">
+    <div style="max-width: 900px; width: 100%;">
+      <div class="accent-line accent-line-cyan"></div>
+      <div class="h1" style="margin-bottom: 8px;">Nên chọn agency nào?</div>
+      <p class="body muted-text" style="margin-bottom: 28px;">Framework quyết định dựa trên mục tiêu và ngân sách</p>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="card framework-card" style="border-left-color: var(--mint);">
+          <div class="framework-if">Nếu</div>
+          <div class="framework-condition">Cần credibility cao nhất + validation quốc tế + track record dài hạn</div>
+          <div class="framework-then">
+            <span class="framework-arrow mint">→</span>
+            <span class="framework-agency">SEONGON</span>
+            <span style="font-size: 12px; color: var(--text-muted); margin-left: 8px;">Global Agency Awards 2026 · 13 năm · 5K+ dự án</span>
+          </div>
+        </div>
+
+        <div class="card framework-card" style="border-left-color: var(--blue);">
+          <div class="framework-if">Nếu</div>
+          <div class="framework-condition">Cần methodology GEO thuần túy rõ ràng nhất + focus B2B/YMYL</div>
+          <div class="framework-then">
+            <span class="framework-arrow" style="color: var(--blue-light);">→</span>
+            <span class="framework-agency">TopOnSeek</span>
+            <span style="font-size: 12px; color: var(--text-muted); margin-left: 8px;">5-component GEO framework · Global Search Awards 2025</span>
+          </div>
+        </div>
+
+        <div class="card framework-card" style="border-left-color: var(--cyan);">
+          <div class="framework-if">Nếu</div>
+          <div class="framework-condition">Cần transparency về methodology + pricing + KPI commitment cao</div>
+          <div class="framework-then">
+            <span class="framework-arrow cyan">→</span>
+            <span class="framework-agency">GTV SEO</span>
+            <span style="font-size: 12px; color: var(--text-muted); margin-left: 8px;">Pricing công khai · 96% KPI rate · Semantic SEO foundation</span>
+          </div>
+        </div>
+
+        <div class="card framework-card" style="border-left-color: var(--amber);">
+          <div class="framework-if">Nếu</div>
+          <div class="framework-condition">Cần kết quả nhanh + giá linh hoạt + quy trình có timeline rõ</div>
+          <div class="framework-then">
+            <span class="framework-arrow amber">→</span>
+            <span class="framework-agency">Midas Agency</span>
+            <span style="font-size: 12px; color: var(--text-muted); margin-left: 8px;">20–125M/tháng · 5-step process · 3–6 tháng thấy kết quả</span>
+          </div>
+        </div>
+
+        <div class="card framework-card" style="border-left-color: #a78bfa;">
+          <div class="framework-if">Nếu</div>
+          <div class="framework-condition">Cần AI citation số lượng cao + ngành Du lịch / F&amp;B / Beauty</div>
+          <div class="framework-then">
+            <span style="color: #a78bfa; font-weight: 700; font-size: 16px;">→</span>
+            <span class="framework-agency" style="margin-left: 8px;">VIO Agency</span>
+            <span style="font-size: 12px; color: var(--text-muted); margin-left: 8px;">1,300+ pages cited · Case study đa ngành</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 11: LIMITATIONS & CAVEATS -->
+  <section class="slide" data-slide="11">
+    <div style="max-width: 880px; width: 100%;">
+      <div class="accent-line" style="background: var(--amber);"></div>
+      <div class="h1" style="margin-bottom: 8px;">Những điều cần biết trước khi quyết định</div>
+      <p class="body muted-text" style="margin-bottom: 28px;">Giới hạn của research này và rủi ro thị trường GEO</p>
+
+      <div class="grid-2">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="card-amber">
+            <div class="h3 amber-text" style="margin-bottom: 12px;">Giới hạn dữ liệu</div>
+            <ul class="feature-list amber">
+              <li>TopOnSeek, SEONGON, VietSEO, Nextop chưa công khai pricing</li>
+              <li>Tất cả case study do agency tự công bố — chưa có audit độc lập</li>
+              <li>Các bài "Top GEO Agency" chủ yếu do chính agency viết</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="h3" style="margin-bottom: 12px; font-size: 16px;">Rủi ro thị trường</div>
+            <ul class="feature-list">
+              <li>GEO chưa đủ 2 năm tại VN — không đủ dữ liệu long-term</li>
+              <li>Algorithm ChatGPT/Gemini/Perplexity thay đổi liên tục</li>
+              <li>Agency top hôm nay có thể lỗi methodology trong 6 tháng</li>
+            </ul>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="card">
+            <div class="h3" style="margin-bottom: 12px; font-size: 16px;">Dấu hiệu agency GEO thực chất</div>
+            <ul class="feature-list mint">
+              <li>Tuyển chuyên viên GEO riêng biệt (không ghép vào SEO team)</li>
+              <li>Có tool đo lường AI citation cụ thể (không chỉ Google Analytics)</li>
+              <li>Case study có số liệu trước/sau theo thời gian</li>
+              <li>Phân biệt rõ GEO với SEO trong proposal</li>
+            </ul>
+          </div>
+          <div class="card" style="padding: 18px 20px;">
+            <div class="label" style="margin-bottom: 8px;">Red flags cần tránh</div>
+            <ul class="feature-list" style="gap: 8px;">
+              <li style="font-size: 13px; color: var(--text-secondary);">Gọi mọi thứ là GEO mà không giải thích methodology</li>
+              <li style="font-size: 13px; color: var(--text-secondary);">Cam kết "Top AI Overview trong 1 tháng"</li>
+              <li style="font-size: 13px; color: var(--text-secondary);">Không có team/người chuyên về GEO cụ thể</li>
+              <li style="font-size: 13px; color: var(--text-secondary);">Case study chỉ có traffic, không có AI citation metrics</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 12: BOTTOM LINE -->
+  <section class="slide" data-slide="12">
+    <div style="max-width: 860px; width: 100%; position: relative; z-index: 2;">
+      <div class="accent-line"></div>
+      <div class="h1" style="margin-bottom: 20px;">Bottom Line</div>
+
+      <div class="card-elevated" style="margin-bottom: 20px; padding: 28px 32px;">
+        <p class="body-lg" style="color: var(--text-primary); line-height: 1.7;">
+          Thị trường GEO Việt Nam đang ở giai đoạn <span class="gradient-text" style="font-weight: 700;">early adopter</span> với 6–8 agency thực sự nghiêm túc.
+          Chưa có "winner" rõ ràng — mỗi agency mạnh ở một chiều khác nhau.
+          Quyết định nên dựa trên ngành, ngân sách và loại KPI bạn cần đo lường.
+        </p>
+      </div>
+
+      <div class="grid-3" style="margin-bottom: 20px;">
+        <div class="card" style="text-align: center; padding: 20px 16px;">
+          <div style="font-size: 28px; margin-bottom: 8px;">🏅</div>
+          <div style="font-size: 13px; font-weight: 700; color: var(--mint); margin-bottom: 4px;">Credibility</div>
+          <div style="font-size: 14px; font-weight: 600;">SEONGON</div>
+          <div style="font-size: 11px; color: var(--text-muted);">Giải thưởng QT độc lập</div>
+        </div>
+        <div class="card" style="text-align: center; padding: 20px 16px;">
+          <div style="font-size: 28px; margin-bottom: 8px;">🎯</div>
+          <div style="font-size: 13px; font-weight: 700; color: var(--cyan); margin-bottom: 4px;">GEO Thuần Túy</div>
+          <div style="font-size: 14px; font-weight: 600;">TopOnSeek</div>
+          <div style="font-size: 11px; color: var(--text-muted);">Framework GEO rõ ràng nhất</div>
+        </div>
+        <div class="card" style="text-align: center; padding: 20px 16px;">
+          <div style="font-size: 28px; margin-bottom: 8px;">💰</div>
+          <div style="font-size: 13px; font-weight: 700; color: var(--amber); margin-bottom: 4px;">Value &amp; Transparent</div>
+          <div style="font-size: 14px; font-weight: 600;">GTV SEO</div>
+          <div style="font-size: 11px; color: var(--text-muted);">Pricing &amp; KPI công khai</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding: 16px 20px; display: flex; align-items: center; gap: 16px;">
+        <span style="font-size: 20px; flex-shrink: 0;">📌</span>
+        <div style="font-size: 14px; color: var(--text-secondary);">
+          <strong style="color: var(--text-primary);">Khuyến nghị thực tế:</strong> Yêu cầu từng agency demo AI citation audit trên website của bạn trước khi ký hợp đồng.
+          Agency nào làm được trong 48h với số liệu thực → đó là agency biết làm GEO thực sự.
+        </div>
+      </div>
+    </div>
+    <div class="bottom-line-number">GEO</div>
+  </section>
+
+</div>
+
+<!-- Navigation -->
+<div class="nav-bar">
+  <button class="nav-btn" id="btn-prev" onclick="navigate(-1)" disabled>
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <div class="slide-counter"><b id="current">1</b><span class="sep">/</span><span id="total">12</span></div>
+  <button class="nav-btn" id="btn-next" onclick="navigate(1)">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+</div>
+
+<!-- Progress bar -->
+<div class="progress-track"><div class="progress-fill" id="progress"></div></div>
+
+<!-- Slide number -->
+<div class="slide-num" id="slide-num">01</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  document.getElementById('total').textContent = total;
+  updateSlideNum();
+
+  function navigate(dir) {
+    const next = current + dir;
+    if (next < 0 || next >= total) return;
+    slides[current].classList.remove('active');
+    current = next;
+    slides[current].classList.add('active');
+    updateUI();
+  }
+
+  function updateUI() {
+    document.getElementById('current').textContent = current + 1;
+    document.getElementById('progress').style.width = `${((current + 1) / total) * 100}%`;
+    document.getElementById('btn-prev').disabled = current === 0;
+    document.getElementById('btn-next').disabled = current === total - 1;
+    updateSlideNum();
+    history.replaceState(null, '', `#slide-${current + 1}`);
+  }
+
+  function updateSlideNum() {
+    document.getElementById('slide-num').textContent = String(current + 1).padStart(2, '0');
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); navigate(1); }
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); navigate(-1); }
+    if (e.key === 'f' || e.key === 'F') document.documentElement.requestFullscreen?.();
+    if (e.key === 'Escape') document.exitFullscreen?.();
+    if (e.key === 'Home') { current = -1; navigate(1); }
+    if (e.key === 'End')  { current = total - 2; navigate(1); }
+  });
+
+  let touchX = 0;
+  document.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
+  }, { passive: true });
+
+  const hash = location.hash.match(/#slide-(\d+)/);
+  if (hash) { const idx = parseInt(hash[1]) - 1; if (idx > 0 && idx < total) { current = idx - 1; navigate(1); } }
+
+  document.getElementById('progress').style.width = `${(1 / total) * 100}%`;
+</script>
+
+</body>
+</html>

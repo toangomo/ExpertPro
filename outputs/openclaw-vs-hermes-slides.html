@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw vs Hermes — So Sánh Tiềm Năng 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:       #004aef;
+      --blue-light: #2563ff;
+      --blue-dim:   rgba(0, 74, 239, 0.15);
+      --mint:       #00ffaa;
+      --mint-dim:   rgba(0, 255, 170, 0.12);
+      --amber:      #ffce00;
+      --cyan:       #0dd1ff;
+      --cyan-dim:   rgba(13, 209, 255, 0.12);
+      --bg-base:    #080c14;
+      --bg-surface: #0d1117;
+      --bg-card:    rgba(255, 255, 255, 0.04);
+      --text-primary:   #f0f4ff;
+      --text-secondary: rgba(240, 244, 255, 0.6);
+      --text-muted:     rgba(240, 244, 255, 0.35);
+      --border-subtle:  rgba(255, 255, 255, 0.08);
+      --border-default: rgba(255, 255, 255, 0.14);
+      --border-accent:  rgba(0, 74, 239, 0.4);
+      --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+      --slide-pad-x: 80px;
+      --slide-pad-y: 60px;
+      --gap: 32px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg-base);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .deck {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      padding: var(--slide-pad-y) var(--slide-pad-x);
+      background: var(--bg-base);
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide.active { display: flex; }
+
+    /* Typography */
+    .label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(38px, 5vw, 64px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    h3 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #004aef, #0dd1ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: clamp(16px, 1.8vw, 20px);
+      color: var(--text-secondary);
+      max-width: 680px;
+      line-height: 1.6;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      backdrop-filter: blur(12px);
+    }
+
+    .card-accent {
+      border-color: var(--border-accent);
+      background: rgba(0, 74, 239, 0.06);
+    }
+
+    .card-mint {
+      border-color: rgba(0, 255, 170, 0.25);
+      background: var(--mint-dim);
+    }
+
+    .card-amber {
+      border-color: rgba(255, 206, 0, 0.25);
+      background: rgba(255, 206, 0, 0.06);
+    }
+
+    /* Grids */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+
+    /* Stat */
+    .stat-val {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--mint);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* List */
+    .finding-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+
+    .finding-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .finding-list li .num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--blue-light);
+      background: var(--blue-dim);
+      border-radius: 6px;
+      padding: 3px 8px;
+      white-space: nowrap;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    /* Tag */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .tag-blue  { border-color: rgba(0,74,239,0.4); color: #6b9fff; background: var(--blue-dim); }
+    .tag-mint  { border-color: rgba(0,255,170,0.3); color: var(--mint); background: var(--mint-dim); }
+    .tag-amber { border-color: rgba(255,206,0,0.3); color: var(--amber); background: rgba(255,206,0,0.08); }
+    .tag-cyan  { border-color: rgba(13,209,255,0.3); color: var(--cyan); background: var(--cyan-dim); }
+
+    /* Divider */
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      padding: 3px 9px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .badge-green  { background: rgba(0,255,170,0.15); color: var(--mint); }
+    .badge-red    { background: rgba(255,80,80,0.15);  color: #ff6b6b; }
+    .badge-blue   { background: var(--blue-dim); color: #6b9fff; }
+    .badge-amber  { background: rgba(255,206,0,0.12); color: var(--amber); }
+
+    /* Compare row */
+    .compare-row {
+      display: grid;
+      grid-template-columns: 160px 1fr 1fr;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 14px;
+    }
+
+    .compare-row:last-child { border-bottom: none; }
+
+    .compare-row .criterion {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Inline highlight */
+    .hl { color: var(--text-primary); font-weight: 600; }
+    .hl-mint  { color: var(--mint); font-weight: 700; }
+    .hl-blue  { color: #6b9fff; font-weight: 700; }
+    .hl-amber { color: var(--amber); font-weight: 700; }
+    .hl-cyan  { color: var(--cyan); font-weight: 700; }
+
+    p { color: var(--text-secondary); font-size: 15px; line-height: 1.65; }
+
+    /* Nav */
+    .nav-bar {
+      height: 52px;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .nav-bar button {
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      color: var(--text-primary);
+      padding: 6px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .nav-bar button:hover:not(:disabled) {
+      background: var(--blue-dim);
+      border-color: var(--border-accent);
+    }
+
+    .nav-bar button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    .progress-track {
+      height: 3px;
+      background: var(--border-subtle);
+      flex-shrink: 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      transition: width 0.3s ease;
+    }
+
+    .slide-num {
+      position: fixed;
+      bottom: 68px;
+      right: 40px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* Slide-specific layout helpers */
+    .cover-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .dot-sep { width: 4px; height: 4px; background: var(--border-default); border-radius: 50%; }
+
+    .icon-lg {
+      font-size: 32px;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- SLIDE 1 — Cover -->
+  <section class="slide active" data-slide="1">
+    <div class="label">AI Agent Framework · So sánh 2026</div>
+    <h1><span class="gradient-text">OpenClaw vs Hermes</span></h1>
+    <p class="tagline">Hai framework tự động hóa AI nổi bật nhất năm 2026 — một bên thống trị bằng hệ sinh thái, một bên đặt cược vào tự học. Ai có tiềm năng lớn hơn?</p>
+    <div class="cover-meta">
+      <span class="tag tag-blue">345K ★ GitHub</span>
+      <div class="dot-sep"></div>
+      <span class="tag tag-mint">Self-Improving AI</span>
+      <div class="dot-sep"></div>
+      <span class="tag">May 2026</span>
+    </div>
+  </section>
+
+  <!-- SLIDE 2 — Key Findings -->
+  <section class="slide" data-slide="2">
+    <div class="label">Key Findings</div>
+    <h2>5 điều quan trọng nhất</h2>
+    <div class="divider"></div>
+    <ul class="finding-list">
+      <li>
+        <span class="num">01</span>
+        <span><span class="hl">OpenClaw</span> là framework gateway-first — kết nối messaging platforms với LLMs. Đạt 345K GitHub stars, vượt React trong 60 ngày — kỷ lục mọi thời đại.</span>
+      </li>
+      <li>
+        <span class="num">02</span>
+        <span><span class="hl">Hermes Agent</span> là framework agent-first — tập trung vào vòng lặp tự học (GEPA). Đạt 110K stars chỉ trong 10 tuần, phát hành Feb 2026.</span>
+      </li>
+      <li>
+        <span class="num">03</span>
+        <span>OpenClaw <span class="hl-amber">có rủi ro bảo mật nghiêm trọng</span>: 4 CVE, 341 skill độc hại trên ClawHub, 35.4% instances đang bị lỗ hổng.</span>
+      </li>
+      <li>
+        <span class="num">04</span>
+        <span>Hermes Agent <span class="hl-mint">học từ kinh nghiệm</span> — viết skill từ mỗi task, bộ nhớ 3 lớp xuyên session, nhanh hơn 40% sau khi học.</span>
+      </li>
+      <li>
+        <span class="num">05</span>
+        <span>Chiến lược tối ưu: <span class="hl">dùng cả hai</span> — OpenClaw làm orchestrator, Hermes làm execution specialist.</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- SLIDE 3 — OpenClaw Growth -->
+  <section class="slide" data-slide="3">
+    <div class="label">OpenClaw · Tăng trưởng & Quy mô</div>
+    <h2>Dự án open-source phát triển nhanh nhất lịch sử GitHub</h2>
+    <div class="grid-3" style="margin-top: 8px;">
+      <div class="card">
+        <div class="stat-val">345K</div>
+        <div class="stat-label">GitHub Stars<br><span style="color:var(--text-muted);font-size:11px;">Vượt React — dự án #1 mọi thời đại</span></div>
+      </div>
+      <div class="card">
+        <div class="stat-val" style="color:var(--cyan);">3.2M</div>
+        <div class="stat-label">Active users<br><span style="color:var(--text-muted);font-size:11px;">500K+ running instances toàn cầu</span></div>
+      </div>
+      <div class="card">
+        <div class="stat-val" style="color:var(--amber);">13.7K</div>
+        <div class="stat-label">ClawHub Skills<br><span style="color:var(--text-muted);font-size:11px;">180 startups, $320K+/tháng doanh thu</span></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top: 20px; padding: 20px 28px;">
+      <p><span class="hl">Nguồn gốc:</span> Tạo bởi Peter Steinberger (Áo), ra mắt tháng 11/2025 với tên Clawdbot. Đổi tên OpenClaw tháng 1/2026. Creator đã <span class="hl-mint">gia nhập OpenAI</span> tháng 2/2026. Dự án chuyển về quản lý bởi <span class="hl">Open-Source Foundation</span> với MIT license, đảm bảo trung lập với mọi LLM provider.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 4 — OpenClaw Architecture -->
+  <section class="slide" data-slide="4">
+    <div class="label">OpenClaw · Kiến trúc Gateway-First</div>
+    <h2>Điểm mạnh: Hệ sinh thái rộng, tích hợp mọi nơi</h2>
+    <div class="grid-2" style="margin-top: 8px;">
+      <div>
+        <div class="card card-accent" style="margin-bottom: 16px;">
+          <h3>Gateway-First Design</h3>
+          <p style="font-size:14px;">Kết nối WhatsApp, Telegram, Discord → bất kỳ LLM nào qua OpenAI-compatible API. OpenClaw là <span class="hl">control plane</span> cho AI assistant của bạn.</p>
+        </div>
+        <div class="card" style="margin-bottom: 16px;">
+          <h3>ClawHub Ecosystem</h3>
+          <p style="font-size:14px;">13,700+ community-built skills, multi-agent orchestration, macOS/iOS companion app. Bất kỳ LLM provider nào đều hỗ trợ.</p>
+        </div>
+        <div class="card">
+          <h3>Enterprise Ready</h3>
+          <p style="font-size:14px;">Best-fit cho workflows có cấu trúc: sales pipeline, DevOps automation, reporting. Foundation governance = enterprise confidence.</p>
+        </div>
+      </div>
+      <div class="card card-mint" style="align-self: start;">
+        <div class="label" style="margin-bottom: 8px;">Dùng OpenClaw khi</div>
+        <ul class="finding-list">
+          <li><span class="num" style="background:var(--mint-dim); color:var(--mint);">✓</span><span>Cần orchestrate nhiều platform và service</span></li>
+          <li><span class="num" style="background:var(--mint-dim); color:var(--mint);">✓</span><span>Workflow đã có cấu trúc và lặp lại</span></li>
+          <li><span class="num" style="background:var(--mint-dim); color:var(--mint);">✓</span><span>Muốn deploy nhanh với ecosystem sẵn có</span></li>
+          <li><span class="num" style="background:var(--mint-dim); color:var(--mint);">✓</span><span>Cần giao tiếp qua messaging apps</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5 — Hermes Agent -->
+  <section class="slide" data-slide="5">
+    <div class="label">Hermes Agent · NousResearch</div>
+    <h2>AI đầu tiên học từ chính kinh nghiệm của nó</h2>
+    <div class="grid-2" style="margin-top: 8px;">
+      <div>
+        <div class="card card-accent" style="margin-bottom: 16px;">
+          <div class="icon-lg">🔄</div>
+          <h3>Closed Learning Loop</h3>
+          <p style="font-size:14px;">Sau mỗi task, Hermes tự viết Markdown Skill File vào SQLite. Session sau: tự load lại. Nhanh hơn <span class="hl-mint">40%</span> sau khi đã học.</p>
+        </div>
+        <div class="card" style="margin-bottom: 16px;">
+          <div class="icon-lg">🧬</div>
+          <h3>GEPA — Tự tiến hóa</h3>
+          <p style="font-size:14px;">Genetic-Pareto Prompt Evolution — ICLR 2026 Oral. Đọc execution traces, tự cải thiện skill và system prompts. Không chỉ retry — <span class="hl">evolve</span>.</p>
+        </div>
+      </div>
+      <div>
+        <div class="card card-mint" style="margin-bottom: 16px;">
+          <div class="stat-val" style="font-size: 36px;">110K</div>
+          <div class="stat-label">GitHub Stars sau 10 tuần<br><span style="font-size:11px;color:var(--text-muted);">v0.9.0 — April 13, 2026</span></div>
+        </div>
+        <div class="card">
+          <h3>Specs</h3>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:8px; font-size:13px; color: var(--text-secondary);">
+            <li>→ Python · SQLite FTS5 · 40+ built-in tools</li>
+            <li>→ Memory: 3-layer persistent (episodic + semantic + skill)</li>
+            <li>→ Model-agnostic: Claude, GPT-4, Gemini, Ollama</li>
+            <li>→ Self-hostable từ $5/tháng VPS</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 6 — Head-to-Head Comparison -->
+  <section class="slide" data-slide="6">
+    <div class="label">So sánh trực tiếp</div>
+    <h2>Gateway-First vs Agent-First</h2>
+    <div class="card" style="margin-top: 8px;">
+      <div class="compare-row" style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); padding-bottom: 8px; border-bottom: 1px solid var(--border-default);">
+        <span>TIÊU CHÍ</span>
+        <span style="color: #6b9fff;">OPENCLAW</span>
+        <span style="color: var(--mint);">HERMES AGENT</span>
+      </div>
+      <div class="compare-row">
+        <span class="criterion">Triết lý</span>
+        <span>Gateway + Ecosystem</span>
+        <span>Learning Loop + Depth</span>
+      </div>
+      <div class="compare-row">
+        <span class="criterion">GitHub Stars</span>
+        <span><span class="hl-blue">345K</span> (mọi thời đại)</span>
+        <span><span class="hl-mint">110K</span> (10 tuần)</span>
+      </div>
+      <div class="compare-row">
+        <span class="criterion">Skill Ecosystem</span>
+        <span>13,700+ ClawHub skills</span>
+        <span>40+ built-in, tự tạo từ experience</span>
+      </div>
+      <div class="compare-row">
+        <span class="criterion">Tự học</span>
+        <span><span class="badge badge-red">Không</span></span>
+        <span><span class="badge badge-green">GEPA · ICLR 2026</span></span>
+      </div>
+      <div class="compare-row">
+        <span class="criterion">Bảo mật</span>
+        <span><span class="badge badge-red">4 CVEs · 341 malicious skills</span></span>
+        <span><span class="badge badge-green">0 CVE (ít tested hơn)</span></span>
+      </div>
+      <div class="compare-row">
+        <span class="criterion">Governance</span>
+        <span>Open-Source Foundation · MIT</span>
+        <span>NousResearch · MIT</span>
+      </div>
+      <div class="compare-row">
+        <span class="criterion">Phù hợp nhất</span>
+        <span>Orchestration · Integration</span>
+        <span>Automation cần cải thiện theo thời gian</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 7 — Security Risk -->
+  <section class="slide" data-slide="7">
+    <div class="label">Rủi ro bảo mật · OpenClaw</div>
+    <h2>Tăng trưởng quá nhanh để kiểm soát an toàn</h2>
+    <div class="grid-2" style="margin-top: 8px; align-items: start;">
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div class="card card-amber">
+          <h3 style="color: var(--amber);">ClawHub Supply Chain Risk</h3>
+          <p style="font-size:14px;">341 malicious skills được upload lên ClawHub (Jan–Feb 2026). Bất kỳ GitHub account nào >1 tuần tuổi có thể publish skill — <span class="hl-amber">không có code review</span>.</p>
+        </div>
+        <div class="card card-amber">
+          <h3 style="color: var(--amber);">35.4% Instances Bị Lỗ Hổng</h3>
+          <p style="font-size:14px;">SecurityScorecard: 40,214 instances exposed trên internet. 4,500+ cài đặt sai lộ API keys và passwords. CVEs: command injection, SSRF, path traversal, prompt injection.</p>
+        </div>
+      </div>
+      <div class="card" style="align-self: stretch;">
+        <div class="label" style="margin-bottom: 12px;">Phản ứng của OpenClaw</div>
+        <p style="font-size:14px; margin-bottom:16px;">Đã công bố <span class="hl">Five-Point Security Plan</span> nhưng từ chối cam kết "risk-free AI agent". Microsoft Security Blog đã đưa ra hướng dẫn riêng về isolation và runtime risk.</p>
+        <div style="height:1px; background: var(--border-subtle); margin: 16px 0;"></div>
+        <div class="label" style="margin-bottom:8px;">Hermes vs OpenClaw Security</div>
+        <p style="font-size:13px; color: var(--text-muted);">Hermes có 0 CVE — nhưng đây vì Hermes <em>còn mới và ít được test</em>, không phải vì bảo mật tốt hơn căn bản. Khi Hermes scale lên, rủi ro sẽ xuất hiện.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 8 — Potential & Future -->
+  <section class="slide" data-slide="8">
+    <div class="label">Tiềm năng & Tương lai</div>
+    <h2>OpenClaw: Scale — Hermes: Intelligence</h2>
+    <div class="grid-2" style="margin-top: 8px; align-items: start;">
+      <div class="card card-accent">
+        <span class="tag tag-blue">OpenClaw · Tiềm năng</span>
+        <ul class="finding-list" style="margin-top:8px;">
+          <li>
+            <span class="num">↗</span>
+            <span>Foundation governance mở đường cho <span class="hl">enterprise adoption</span> quy mô lớn — B2B integrations, managed hosting, consulting ecosystem.</span>
+          </li>
+          <li>
+            <span class="num">↗</span>
+            <span>OpenAI backing: tiềm năng tích hợp sâu với các model mới nhất của OpenAI, tools, và APIs.</span>
+          </li>
+          <li>
+            <span class="num">↘</span>
+            <span style="color: rgba(255,100,100,0.8);">Rủi ro: Security crisis có thể làm chậm enterprise adoption. ClawHub cần curated marketplace.</span>
+          </li>
+        </ul>
+      </div>
+      <div class="card card-mint">
+        <span class="tag tag-mint">Hermes · Tiềm năng</span>
+        <ul class="finding-list" style="margin-top:8px;">
+          <li>
+            <span class="num">↗</span>
+            <span>GEPA là lợi thế <span class="hl-mint">không thể copy ngay</span> — nếu self-improvement loop chứng minh compounding gains trên public benchmarks, game-changer thật sự.</span>
+          </li>
+          <li>
+            <span class="num">↗</span>
+            <span>Model-agnostic + open weights Hermes LLMs = fully sovereign deployment cho enterprise có yêu cầu data privacy.</span>
+          </li>
+          <li>
+            <span class="num">↘</span>
+            <span style="color: rgba(255,100,100,0.8);">Rủi ro: Learning loop còn bias "self-congratulation" — agent đánh giá performance của mình quá tốt. Chưa có evidence compounding gains trên scale lớn.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px; padding:16px 24px; border-color: rgba(255,206,0,0.25);">
+      <p style="font-size:14px; color: var(--amber);">💡 <span class="hl">Chiến lược tối ưu 2026:</span> Chạy OpenClaw làm orchestrator (messaging + routing) + Hermes làm execution specialist (research, analysis, phức tạp). Cả hai MIT license, cả hai self-hostable.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 9 — Takeaways -->
+  <section class="slide" data-slide="9">
+    <div class="label">Kết luận · Takeaways</div>
+    <h2>OpenClaw thống trị hôm nay.<br>Hermes đặt cược vào ngày mai.</h2>
+    <div class="grid-3" style="margin-top: 16px;">
+      <div class="card">
+        <div class="icon-lg">🏆</div>
+        <h3>OpenClaw wins</h3>
+        <p style="font-size:13px;">Ecosystem, community, integrations. Dùng ngay nếu cần orchestration platform cho messaging + multi-platform workflows.</p>
+      </div>
+      <div class="card">
+        <div class="icon-lg">🧠</div>
+        <h3>Hermes wins</h3>
+        <p style="font-size:13px;">Self-improvement và persistent memory. Dùng nếu cần automation ngày càng thông minh hơn theo thời gian — không cần setup lại từ đầu.</p>
+      </div>
+      <div class="card">
+        <div class="icon-lg">⚡</div>
+        <h3>Dùng cả hai</h3>
+        <p style="font-size:13px;">OpenClaw = control plane. Hermes = AI brain. Cả hai MIT, cả hai open-source, cả hai self-hostable. Stack này beat mọi thứ SaaS.</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top: 20px; padding:16px 24px; border-color: var(--border-subtle);">
+      <p style="font-size:13px; color: var(--text-muted);"><span class="hl">Giới hạn nghiên cứu:</span> OpenClaw growth metrics từ nhiều nguồn tổng hợp (April 2026). Hermes GEPA claims dựa trên paper ICLR 2026 — chưa có independent large-scale replication. Security data từ Koi Security audit Q1 2026.</p>
+    </div>
+  </section>
+
+</div>
+
+<!-- Nav -->
+<div class="progress-track"><div class="progress-fill" id="progress"></div></div>
+<div class="nav-bar">
+  <button id="btn-prev" onclick="navigate(-1)" disabled>←</button>
+  <span><b id="current">1</b> / <span id="total">9</span></span>
+  <button id="btn-next" onclick="navigate(1)">→</button>
+</div>
+<div class="slide-num" id="slide-num">01</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+  document.getElementById('total').textContent = total;
+
+  function navigate(dir) {
+    const next = current + dir;
+    if (next < 0 || next >= total) return;
+    slides[current].classList.remove('active');
+    current = next;
+    slides[current].classList.add('active');
+    updateUI();
+  }
+
+  function updateUI() {
+    document.getElementById('current').textContent = current + 1;
+    document.getElementById('progress').style.width = `${((current+1)/total)*100}%`;
+    document.getElementById('btn-prev').disabled = current === 0;
+    document.getElementById('btn-next').disabled = current === total - 1;
+    document.getElementById('slide-num').textContent = String(current+1).padStart(2,'0');
+  }
+
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight','ArrowDown',' '].includes(e.key)) { e.preventDefault(); navigate(1); }
+    if (['ArrowLeft','ArrowUp'].includes(e.key)) { e.preventDefault(); navigate(-1); }
+    if (e.key === 'f') document.documentElement.requestFullscreen?.();
+  });
+
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
+  }, {passive:true});
+
+  document.getElementById('progress').style.width = `${(1/total)*100}%`;
+</script>
+</body>
+</html>

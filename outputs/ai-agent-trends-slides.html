@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agent Trends 2025–2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:       #004aef;
+      --blue-light: #2563ff;
+      --blue-dim:   rgba(0, 74, 239, 0.15);
+      --mint:       #00ffaa;
+      --mint-dim:   rgba(0, 255, 170, 0.12);
+      --amber:      #ffce00;
+      --cyan:       #0dd1ff;
+      --cyan-dim:   rgba(13, 209, 255, 0.12);
+      --bg-base:    #080c14;
+      --bg-surface: #0d1117;
+      --bg-card:    rgba(255, 255, 255, 0.04);
+      --text-primary:   #f0f4ff;
+      --text-secondary: rgba(240, 244, 255, 0.6);
+      --text-muted:     rgba(240, 244, 255, 0.35);
+      --border-subtle:  rgba(255, 255, 255, 0.08);
+      --border-default: rgba(255, 255, 255, 0.14);
+      --border-accent:  rgba(0, 74, 239, 0.4);
+      --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+      --slide-pad-x: 80px;
+      --slide-pad-y: 60px;
+      --gap: 32px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg-base);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .deck {
+      position: relative;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: var(--slide-pad-y) var(--slide-pad-x);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--bg-base);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .slide.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    /* Typography */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--mint);
+      background: var(--mint-dim);
+      border: 1px solid rgba(0,255,170,0.25);
+      border-radius: 6px;
+      padding: 4px 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3.5vw, 42px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #004aef, #0dd1ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gradient-text-mint {
+      background: linear-gradient(135deg, #00ffaa, #0dd1ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 620px;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      backdrop-filter: blur(12px);
+    }
+
+    .card-accent {
+      border-color: var(--border-accent);
+      background: linear-gradient(135deg, rgba(0,74,239,0.08), rgba(13,209,255,0.04));
+    }
+
+    .card-mint {
+      border-color: rgba(0,255,170,0.25);
+      background: var(--mint-dim);
+    }
+
+    .card-amber {
+      border-color: rgba(255,206,0,0.25);
+      background: rgba(255,206,0,0.06);
+    }
+
+    /* Grid layouts */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: var(--gap); }
+
+    /* Stats */
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700;
+      color: var(--mint);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    /* List items */
+    .item-list { display: flex; flex-direction: column; gap: 14px; }
+
+    .item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .item-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--cyan);
+      background: var(--cyan-dim);
+      border: 1px solid rgba(13,209,255,0.2);
+      border-radius: 6px;
+      padding: 3px 8px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .item-content strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+    }
+
+    .item-content span {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Highlight box */
+    .highlight {
+      border-left: 3px solid var(--blue-light);
+      padding-left: 16px;
+      margin: 20px 0;
+    }
+
+    .highlight p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .badge-blue { background: var(--blue-dim); color: #6b9fff; border: 1px solid var(--border-accent); }
+    .badge-mint { background: var(--mint-dim); color: var(--mint); border: 1px solid rgba(0,255,170,0.25); }
+    .badge-amber { background: rgba(255,206,0,0.1); color: var(--amber); border: 1px solid rgba(255,206,0,0.25); }
+    .badge-red { background: rgba(255,60,60,0.1); color: #ff6b6b; border: 1px solid rgba(255,60,60,0.25); }
+
+    /* Divider */
+    .divider { height: 1px; background: var(--border-subtle); margin: 20px 0; }
+
+    /* Icon circle */
+    .icon-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    /* Cover specific */
+    .cover-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .cover-meta-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--border-default);
+    }
+
+    /* Nav bar */
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px 24px;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      flex-shrink: 0;
+    }
+
+    .nav-bar button {
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      border-radius: 8px;
+      color: var(--text-primary);
+      cursor: pointer;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-family: var(--font-body);
+      transition: all 0.2s;
+    }
+
+    .nav-bar button:hover:not(:disabled) {
+      background: var(--blue-dim);
+      border-color: var(--border-accent);
+    }
+
+    .nav-bar button:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .nav-bar span {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--text-secondary);
+      min-width: 60px;
+      text-align: center;
+    }
+
+    /* Progress bar */
+    .progress-track {
+      height: 2px;
+      background: var(--border-subtle);
+      flex-shrink: 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      transition: width 0.3s ease;
+    }
+
+    /* Slide number */
+    .slide-num {
+      position: fixed;
+      top: 24px;
+      right: 32px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* Background decoration */
+    .bg-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Roadmap row */
+    .roadmap-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      transition: border-color 0.2s;
+    }
+
+    .roadmap-icon {
+      font-size: 24px;
+      width: 40px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .roadmap-text strong { font-size: 15px; font-weight: 600; display: block; margin-bottom: 2px; }
+    .roadmap-text span { font-size: 13px; color: var(--text-secondary); }
+
+    .metric-row {
+      display: flex;
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .metric-box {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .metric-box .val {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--mint);
+    }
+
+    .metric-box .lbl {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="slide-num" id="slide-num">01</div>
+<div class="progress-track"><div class="progress-fill" id="progress"></div></div>
+
+<div class="deck">
+
+  <!-- SLIDE 1: Cover -->
+  <section class="slide active" data-slide="1">
+    <div class="bg-glow" style="width:500px;height:500px;background:rgba(0,74,239,0.12);top:-100px;left:-100px;"></div>
+    <div class="bg-glow" style="width:400px;height:400px;background:rgba(13,209,255,0.08);bottom:-100px;right:-50px;"></div>
+    <div class="slide-content">
+      <div class="tag">⚡ Research Report · May 2026</div>
+      <h1>5 Định hướng <span class="gradient-text">AI Agent</span><br>đang định hình tương lai</h1>
+      <p class="subtitle">Từ multi-agent orchestration đến SLM on-device — các paradigm shift mà mọi AI developer cần nắm vững ngay bây giờ.</p>
+      <div class="cover-meta">
+        <div class="cover-meta-item">📊 Thị trường $7.6B → $50B</div>
+        <div class="cover-meta-dot"></div>
+        <div class="cover-meta-item">⏱ Task duration ×8 trong 1 năm</div>
+        <div class="cover-meta-dot"></div>
+        <div class="cover-meta-item">🔌 10,000+ MCP servers</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2: Thị trường -->
+  <section class="slide" data-slide="2">
+    <div class="slide-content" style="width:100%">
+      <div class="tag">📈 Thị trường</div>
+      <h2>AI Agent đang bùng nổ — và mới chỉ bắt đầu</h2>
+      <div class="grid-3" style="margin-bottom: 24px;">
+        <div class="card card-accent">
+          <div class="stat-value">$7.6B</div>
+          <div class="stat-label">Quy mô thị trường AI Agent năm 2025</div>
+        </div>
+        <div class="card card-accent">
+          <div class="stat-value">$50B+</div>
+          <div class="stat-label">Dự báo năm 2030 (tăng trưởng 6.6×)</div>
+        </div>
+        <div class="card card-accent">
+          <div class="stat-value">40%</div>
+          <div class="stat-label">Enterprise apps sẽ tích hợp AI Agent vào cuối 2026 (Gartner)</div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="badge badge-blue" style="margin-bottom:12px">Enterprise</div>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.6">88% tổ chức đang dùng AI thường xuyên (up from 78% năm 2024). 62% đang thử nghiệm hoặc triển khai AI agent trong workflow thực tế.</p>
+        </div>
+        <div class="card">
+          <div class="badge badge-mint" style="margin-bottom:12px">Developer</div>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.6">1,445% tăng trưởng số lượng truy vấn về multi-agent systems từ Gartner clients — từ Q1 2024 đến Q2 2025. Đây là dấu hiệu của sự thay đổi mang tính căn bản.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: Multi-Agent -->
+  <section class="slide" data-slide="3">
+    <div class="bg-glow" style="width:300px;height:300px;background:rgba(0,74,239,0.1);top:50px;right:100px;"></div>
+    <div class="slide-content" style="width:100%">
+      <div class="tag">🤝 Định hướng 01</div>
+      <h2>Từ 1 agent đơn lẻ → <span class="gradient-text">Đội nhóm chuyên biệt</span></h2>
+      <div class="grid-2-1">
+        <div class="item-list">
+          <div class="item">
+            <div class="item-num">01</div>
+            <div class="item-content">
+              <strong>Orchestrator + Sub-agents</strong>
+              <span>Một agent điều phối giao việc cho nhiều agent chuyên biệt. LangGraph, CrewAI, AutoGen, Google ADK đều theo mô hình này.</span>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-num">02</div>
+            <div class="item-content">
+              <strong>Vertical vs Horizontal teams</strong>
+              <span>Horizontal: tư vấn cộng tác. Vertical: phân công rõ ràng theo trách nhiệm công cụ. Chọn theo use case.</span>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-num">03</div>
+            <div class="item-content">
+              <strong>Các framework hot nhất</strong>
+              <span>LangGraph (stateful), CrewAI (dễ dùng), AutoGen (Microsoft), OpenAI Agents SDK (tháng 3/2025), Google ADK (tháng 4/2025).</span>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-num">04</div>
+            <div class="item-content">
+              <strong>Research insight</strong>
+              <span>Multi-agent discussion KHÔNG nhất thiết tốt hơn — phụ thuộc vào chất lượng prompt và thiết kế kiến trúc, không phải số lượng agent.</span>
+            </div>
+          </div>
+        </div>
+        <div class="card card-mint" style="display:flex;flex-direction:column;justify-content:center;text-align:center;">
+          <div class="stat-value" style="font-size:42px">1,445%</div>
+          <div class="stat-label" style="margin-top:10px;font-size:13px">Tăng trưởng interest<br>Multi-Agent Systems<br>Q1 2024 → Q2 2025</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4: MCP Protocol -->
+  <section class="slide" data-slide="4">
+    <div class="slide-content" style="width:100%">
+      <div class="tag">🔌 Định hướng 02</div>
+      <h2><span class="gradient-text">MCP</span> — Chuẩn kết nối AI với thế giới thực</h2>
+      <div class="grid-2" style="margin-bottom:20px">
+        <div>
+          <p style="font-size:15px;color:var(--text-secondary);line-height:1.7;margin-bottom:16px">Model Context Protocol (Anthropic, Nov 2024) trở thành chuẩn mực ngành trong vòng 1 năm — được tất cả các ông lớn AI áp dụng: OpenAI, Google, Microsoft, AWS.</p>
+          <div class="highlight">
+            <p>MCP hoạt động như một "USB-C cho AI" — một giao thức chuẩn để agent gọi tools, query databases, và phối hợp giữa các vendor mà không cần tích hợp riêng lẻ.</p>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px">
+            <span class="badge badge-blue">OpenAI ✓</span>
+            <span class="badge badge-blue">Google ✓</span>
+            <span class="badge badge-blue">Microsoft ✓</span>
+            <span class="badge badge-blue">AWS ✓</span>
+            <span class="badge badge-mint">Linux Foundation</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div class="card" style="text-align:center">
+            <div class="stat-value">97M</div>
+            <div class="stat-label">Monthly SDK downloads</div>
+          </div>
+          <div class="card" style="text-align:center">
+            <div class="stat-value">10,000+</div>
+            <div class="stat-label">Public MCP servers</div>
+          </div>
+          <div class="card" style="text-align:center">
+            <div class="stat-value">8M</div>
+            <div class="stat-label">Downloads Apr 2025<br><span style="font-size:11px;color:var(--text-muted)">(từ 100K Nov 2024)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: Memory & Long-Context -->
+  <section class="slide" data-slide="5">
+    <div class="bg-glow" style="width:350px;height:350px;background:rgba(0,255,170,0.06);bottom:0;left:100px;"></div>
+    <div class="slide-content" style="width:100%">
+      <div class="tag">🧠 Định hướng 03</div>
+      <h2>Memory hệ thống — <span class="gradient-text-mint">Agent nhớ dài, làm việc lâu hơn</span></h2>
+      <div class="grid-2-1">
+        <div>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:20px">Memory đang là yếu tố phân biệt agent thật sự tự trị với chatbot có tool. Nghiên cứu ECAI 2025 so sánh 10 cách tiếp cận — từ RAG, full-context đến Mem0 và Zep.</p>
+          <div class="item-list">
+            <div class="item">
+              <div class="item-num">01</div>
+              <div class="item-content">
+                <strong>Short-term + Long-term + Episodic</strong>
+                <span>3 loại memory đang được nghiên cứu kết hợp cho agent liên tục học qua sessions.</span>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item-num">02</div>
+              <div class="item-content">
+                <strong>MemRL — Reinforcement Learning trên Memory</strong>
+                <span>Agent tự điều chỉnh cách lưu và truy xuất memory dựa trên kết quả task (2026).</span>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item-num">03</div>
+              <div class="item-content">
+                <strong>Token-efficient retrieval</strong>
+                <span>Thuật toán mới (Apr 2026): single-pass hierarchical extraction, giảm 6,956 tokens/call.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card card-mint" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:24px">
+          <div>
+            <div class="stat-value" style="font-size:36px">×8</div>
+            <div class="stat-label">Task duration tăng<br>trong 1 năm</div>
+          </div>
+          <div class="divider" style="width:100%"></div>
+          <div>
+            <div class="stat-value" style="font-size:28px">7 tháng</div>
+            <div class="stat-label">Thời gian task tự chủ<br>tăng gấp đôi<br><em style="font-size:11px">(METR Research)</em></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 6: Computer/Browser Use -->
+  <section class="slide" data-slide="6">
+    <div class="slide-content" style="width:100%">
+      <div class="tag">💻 Định hướng 04</div>
+      <h2>Computer & Browser Use — <span class="gradient-text">Tự động hóa thực sự</span></h2>
+      <div class="grid-2" style="margin-bottom:20px">
+        <div class="item-list">
+          <div class="item">
+            <div class="icon-circle" style="background:var(--blue-dim);font-size:18px">🖥</div>
+            <div class="item-content">
+              <strong>Vision model đạt ngưỡng thực tế</strong>
+              <span>Claude Opus 4.7 và GPT-5 đẩy độ chính xác screen-understanding từ 70% lên 92%+ — đạt ngưỡng thương mại hóa.</span>
+            </div>
+          </div>
+          <div class="item">
+            <div class="icon-circle" style="background:var(--mint-dim);font-size:18px">🌐</div>
+            <div class="item-content">
+              <strong>Browser agents mainstream hóa</strong>
+              <span>Perplexity Comet (Jul 2025), ChatGPT Atlas (Oct 2025) — agents tự điều hướng web, điền form, quản lý email.</span>
+            </div>
+          </div>
+          <div class="item">
+            <div class="icon-circle" style="background:var(--cyan-dim);font-size:18px">🏭</div>
+            <div class="item-content">
+              <strong>Enterprise adoption bùng nổ</strong>
+              <span>Adobe Analytics: 4,700% tăng trưởng traffic từ AI agents đến retail sites (Jul 2025). Thị trường browser agent đạt $12B năm 2026.</span>
+            </div>
+          </div>
+          <div class="item">
+            <div class="icon-circle" style="background:rgba(255,206,0,0.1);font-size:18px">⏱</div>
+            <div class="item-content">
+              <strong>Thời gian task tăng liên tục</strong>
+              <span>Frontier models giờ làm việc tự trị gần 5 giờ. Cứ 6 tháng, thời gian xử lý task tự chủ tăng gấp đôi.</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div class="card card-accent" style="text-align:center;padding:28px">
+            <div class="stat-value" style="font-size:40px">4,700%</div>
+            <div class="stat-label" style="margin-top:8px">Tăng trưởng AI agent<br>traffic đến US retail sites<br>(Adobe Analytics, Jul 2025)</div>
+          </div>
+          <div class="card" style="text-align:center;padding:24px">
+            <div class="stat-value" style="font-size:32px">92%+</div>
+            <div class="stat-label" style="margin-top:6px">Screen understanding accuracy<br>của frontier models 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 7: Small Language Models -->
+  <section class="slide" data-slide="7">
+    <div class="bg-glow" style="width:400px;height:400px;background:rgba(13,209,255,0.07);top:-50px;right:-50px;"></div>
+    <div class="slide-content" style="width:100%">
+      <div class="tag">⚡ Định hướng 05</div>
+      <h2>SLM — <span class="gradient-text">Nhỏ hơn, nhanh hơn, rẻ hơn</span></h2>
+      <div class="grid-2">
+        <div>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:20px">NVIDIA Research (Jun 2025) công bố: <em>"Small Language Models là tương lai của Agentic AI"</em>. Không phải scale lên — mà là kết hợp thông minh.</p>
+          <div class="item-list">
+            <div class="item">
+              <div class="item-num">01</div>
+              <div class="item-content">
+                <strong>1–7B parameters, chạy trên device</strong>
+                <span>Laptop, điện thoại, edge devices — không cần cloud, không cần network.</span>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item-num">02</div>
+              <div class="item-content">
+                <strong>Heterogeneous routing</strong>
+                <span>SLM xử lý routine tasks (classify, route, tool wiring). Escalate lên LLM chỉ khi cần. Chi phí giảm 10–100×.</span>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item-num">03</div>
+              <div class="item-content">
+                <strong>Microsoft Phi-3: 3B bằng 70B</strong>
+                <span>Carefully trained small model đạt performance ngang với model lớn hơn nhiều lần trên benchmark.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card card-accent" style="display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.06em">Use case phù hợp SLM</p>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="padding:10px 14px;background:var(--bg-base);border-radius:8px;font-size:13px;color:var(--text-secondary)">✓ Classification & routing</div>
+              <div style="padding:10px 14px;background:var(--bg-base);border-radius:8px;font-size:13px;color:var(--text-secondary)">✓ Tool call wiring</div>
+              <div style="padding:10px 14px;background:var(--bg-base);border-radius:8px;font-size:13px;color:var(--text-secondary)">✓ Real-time offline inference</div>
+              <div style="padding:10px 14px;background:var(--bg-base);border-radius:8px;font-size:13px;color:var(--text-secondary)">✓ Personalized local assistant</div>
+              <div style="padding:10px 14px;background:var(--bg-base);border-radius:8px;font-size:13px;color:var(--text-secondary)">✓ Edge/IoT deployment</div>
+            </div>
+          </div>
+          <div class="badge badge-mint" style="margin-top:16px;align-self:flex-start">NVIDIA Research 2025</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 8: Safety & Guardrails -->
+  <section class="slide" data-slide="8">
+    <div class="slide-content" style="width:100%">
+      <div class="tag">🛡 Rủi ro quan trọng</div>
+      <h2>Safety & Guardrails — <span style="background:linear-gradient(135deg,#ff6b6b,#ffce00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Điểm yếu nghiêm trọng</span></h2>
+      <div class="grid-2">
+        <div class="item-list">
+          <div class="item">
+            <div class="item-num" style="background:rgba(255,60,60,0.1);color:#ff6b6b;border-color:rgba(255,60,60,0.2)">⚠</div>
+            <div class="item-content">
+              <strong>87% doanh nghiệp thiếu security framework</strong>
+              <span>Gartner: hầu hết chưa có khung bảo mật toàn diện cho AI agent. Prompt injection, data leakage là mối đe dọa chính.</span>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-num" style="background:rgba(255,60,60,0.1);color:#ff6b6b;border-color:rgba(255,60,60,0.2)">⚠</div>
+            <div class="item-content">
+              <strong>Chỉ 21% có governance model trưởng thành</strong>
+              <span>45% doanh nghiệp coi áp lực time-to-market là rào cản lớn nhất với AI governance đúng đắn.</span>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-num" style="background:rgba(255,60,60,0.1);color:#ff6b6b;border-color:rgba(255,60,60,0.2)">⚠</div>
+            <div class="item-content">
+              <strong>65%+ ưu tiên cải thiện observability</strong>
+              <span>Weak observability và immature guardrails là pain points phổ biến nhất ở các team có agent production.</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div class="card card-amber">
+            <p style="font-size:13px;font-weight:600;color:var(--amber);margin-bottom:10px">OWASP Top 10 cho Agentic Apps</p>
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.6">OWASP phát hành danh sách riêng cho agentic applications vào tháng 12/2025 — phản ánh attack surface mới khi agent có thể gọi tools, thực thi code, và truy cập dữ liệu nhạy cảm.</p>
+          </div>
+          <div class="card">
+            <p style="font-size:13px;font-weight:600;margin-bottom:10px">Xu hướng đúng đắn</p>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <p style="font-size:12px;color:var(--text-secondary)">→ Deterministic guardrails (không chỉ prompt)</p>
+              <p style="font-size:12px;color:var(--text-secondary)">→ Runtime enforcement + audit trail</p>
+              <p style="font-size:12px;color:var(--text-secondary)">→ Context engineering cho reliability</p>
+              <p style="font-size:12px;color:var(--text-secondary)">→ Principle of least privilege cho tool access</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 9: Takeaways -->
+  <section class="slide" data-slide="9">
+    <div class="bg-glow" style="width:450px;height:450px;background:rgba(0,74,239,0.09);bottom:-100px;right:-50px;"></div>
+    <div class="slide-content" style="width:100%">
+      <div class="tag">✅ Kết luận & Hành động</div>
+      <h2>5 điều cần làm <span class="gradient-text">ngay bây giờ</span></h2>
+      <div style="display:flex;flex-direction:column;gap:12px;max-width:780px">
+        <div class="roadmap-item">
+          <div class="roadmap-icon">🤝</div>
+          <div class="roadmap-text">
+            <strong>Học multi-agent patterns — LangGraph, CrewAI, hoặc OpenAI Agents SDK</strong>
+            <span>Single agent sẽ sớm lỗi thời. Đây là mô hình chuẩn của tương lai gần.</span>
+          </div>
+          <div class="badge badge-blue" style="flex-shrink:0">Priority 1</div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-icon">🔌</div>
+          <div class="roadmap-text">
+            <strong>Triển khai MCP cho tool integration — thay vì custom API adapter</strong>
+            <span>10,000+ server có sẵn. Tận dụng ecosystem thay vì build từ đầu.</span>
+          </div>
+          <div class="badge badge-mint" style="flex-shrink:0">Priority 2</div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-icon">🧠</div>
+          <div class="roadmap-text">
+            <strong>Thêm memory layer — Mem0, Zep, hoặc custom vector store</strong>
+            <span>Agent không có memory chỉ là stateless chatbot. Memory = autonomy thực sự.</span>
+          </div>
+          <div class="badge badge-blue" style="flex-shrink:0">Priority 3</div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-icon">⚡</div>
+          <div class="roadmap-text">
+            <strong>Dùng SLM cho routine tasks — tiết kiệm 10–100× chi phí inference</strong>
+            <span>Heterogeneous routing: SLM → LLM escalation chỉ khi cần thiết.</span>
+          </div>
+          <div class="badge badge-blue" style="flex-shrink:0">Priority 4</div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-icon">🛡</div>
+          <div class="roadmap-text">
+            <strong>Đầu tư vào observability và guardrails TRƯỚC khi scale</strong>
+            <span>87% thiếu framework. Đây là lợi thế cạnh tranh nếu bạn làm đúng sớm.</span>
+          </div>
+          <div class="badge badge-amber" style="flex-shrink:0">Urgent</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="nav-bar">
+  <button id="btn-prev" onclick="navigate(-1)" disabled>← Trước</button>
+  <span><b id="current">1</b> / <span id="total">9</span></span>
+  <button id="btn-next" onclick="navigate(1)">Tiếp →</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+  document.getElementById('total').textContent = total;
+
+  function navigate(dir) {
+    const next = current + dir;
+    if (next < 0 || next >= total) return;
+    slides[current].classList.remove('active');
+    current = next;
+    slides[current].classList.add('active');
+    updateUI();
+  }
+
+  function updateUI() {
+    document.getElementById('current').textContent = current + 1;
+    document.getElementById('progress').style.width = `${((current+1)/total)*100}%`;
+    document.getElementById('btn-prev').disabled = current === 0;
+    document.getElementById('btn-next').disabled = current === total - 1;
+    document.getElementById('slide-num').textContent = String(current+1).padStart(2,'0');
+  }
+
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight','ArrowDown',' '].includes(e.key)) { e.preventDefault(); navigate(1); }
+    if (['ArrowLeft','ArrowUp'].includes(e.key)) { e.preventDefault(); navigate(-1); }
+    if (e.key === 'f') document.documentElement.requestFullscreen?.();
+  });
+
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
+  }, {passive:true});
+
+  document.getElementById('progress').style.width = `${(1/total)*100}%`;
+</script>
+</body>
+</html>
