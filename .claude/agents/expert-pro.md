@@ -9,7 +9,7 @@ description: >
 
   Dùng khi: muốn nhận kết quả nghiên cứu dưới dạng slide có thể trình chiếu ngay,
   được giao việc qua Telegram hoặc terminal.
-model: claude-opus-4-7
+model: claude-sonnet-4-6
 tools:
   - WebSearch
   - WebFetch

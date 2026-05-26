@@ -3,3 +3,6 @@
 
 # Slide outputs (generated files, không cần track)
 outputs/*.html
+
+# Sensitive credentials
+.claude/channels/**/.env
